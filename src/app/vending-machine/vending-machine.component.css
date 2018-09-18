@@ -1,0 +1,93 @@
+.content{
+    display: flex;
+    flex-direction: row;
+}
+
+div.product{
+    width: 70vw;
+    height: 100vh;
+    display: grid;
+    grid-template-areas: "div div div div div"
+    "div div div div div"
+    "div div div div div"
+    "div div div div div";
+    border: solid 2px #FFF;
+    border-radius: 8px;
+    margin: 0px 5px;
+}
+
+div.product div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.product div div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.product div img{
+    border-radius: 10%;
+    width: 10vw;
+    height: 10vw;
+    margin: 20px 10px;
+
+}
+
+/*div.product img:hover{
+    /*background-color: rgb(109, 224, 128);*
+}*/
+
+
+div.caixa{
+    width: 30vw;
+    height: 100vh;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.caixa{
+    border: solid 2px #FFF;
+    border-radius: 8px;
+}
+
+div.caixa div div{
+    margin: 20px 10px;
+    background-color: rgb(153, 0, 255, 0.2);
+    padding: 10px;
+    border-radius: 30px;
+    color: rgb(255, 242, 240);
+}
+
+div.caixa div div:hover{
+    background-color: rgb(153, 0, 255, 0.8);
+}
+
+.caixa-bottom{
+    margin: 30px;
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.caixa-bottom button{
+    background-color: rgb(153, 0, 255, 0.2);
+    color: #FFF;
+    border-radius: 5px;
+    padding: 3px 20px;
+}
+
+.caixa-bottom button:hover{
+    background-color: rgb(153, 0, 255, 0.8);
+}
+
+.caixa-bottom p{
+    color: #FFF;
+}
