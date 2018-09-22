@@ -1,90 +1,23 @@
 <div class="content">
   <div class="product">
-    <div>
-        <img src="/assets/imgs/AGUA-COM-GAS-CRYSTAL.jpg">
-        <div>
-            <span> R$ 10,00</span>
-            <span>Quantidade: xx</span>  
-        </div>        
+    <div *ngFor="let product of Produtos">
+        <vm-item (Produto)="addToCart($event)" [product]="product"></vm-item>
     </div>
-    <div>
-        <img src="/assets/imgs/AGUA-MINERAL-BONAFONT-500ML.jpg">
-        <span> R$ 10,00</span>
-        <span>Quantidade: xx</span>
+    
+  </div>
+  <div>
+    <vm-caixa (buyIt)="calculateBuy($event)"></vm-caixa>
+    <div class="cart-item">
+      Custo: {{price | currency: 'R$'}}
     </div>
-    <div>
-        <img src="/assets/imgs/BARRA-CHOCOLATE-BAUDUCO.jpg">
-        <span> R$ 10,00</span>
-        <span>Quantidade: xx</span>
+    <div *ngIf="Message == ''"class="troco">
+        Número de itens: {{CartProduct.length}}
+        Seu troco é: {{Troco | currency: 'R$'}}
     </div>
-    <div>
-        <img src="/assets/imgs/BARRA-GOIABINHA-BAUDUCO.jpg">
-        <span> R$ 10,00</span>
-        <span>Quantidade: xx</span>
-    </div>
-    <div>
-        <img src="/assets/imgs/biscoito_recheado_bono.jpg">
-        <span> R$ 10,00</span>
-        <span>Quantidade: xx</span>
-    </div>
-    <div>
-        <img src="/assets/imgs/biscoito_recheado_passatempo.jpg">
-        <div>
-            <span> R$ 10,00</span>
-            <span>Quantidade: xx</span>  
-        </div>        
-    </div>
-    <div>
-        <img src="/assets/imgs/BISCOITO-PASSATEMPO-NESTLE-MINI-WAFER-20.jpg">
-        <span> R$ 10,00</span>
-        <span>Quantidade: xx</span>
-    </div>
-    <div>
-        <img src="/assets/imgs/BISCOITO-WAFER-NESTLE-PASSATEMPO-20G-CHO.jpg">
-        <span> R$ 10,00</span>
-        <span>Quantidade: xx</span>
-    </div>
-    <div>
-        <img src="/assets/imgs/BOLINHO-BAUDUC-DUO-27G-CHOCOLATE.jpg">
-        <span> R$ 09,00</span>
-        <span>Quantidade: xxgg</span>
-    </div>
-    <div>
-        <img src="/assets/imgs/BOLINHO-BAUDUCCO-ROLL-CAKE-34G-CHOCOLATE.jpg">
-        <span> R$ 11,00</span>
-        <span>Quantidade: xx</span>
+    <div *ngIf="Message != ''"class="troco">
+        {{Message}}
     </div>
   </div>
-  <div class="caixa">
-    <div>
-        <div>
-          R$ 50,00
-        </div>
-        <div>
-          R$ 20,00
-        </div>
-        <div>
-          R$ 10,00
-        </div>
-        <div>
-          R$ 5,00
-        </div>
-        <div>
-          R$ 2,00
-        </div>
-        <div>
-          R$ 1,00
-        </div>
-      <div>
-        R$ 0,50
-      </div>   
-      <div>
-        R$ 0,25
-      </div>                   
-    </div>
-    <div class="caixa-bottom">
-      <p>Saldo: xxxx</p>
-      <button>Comprar</button>
-    </div>
-  </div>
+  
+  
 </div>
