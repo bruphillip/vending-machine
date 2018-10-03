@@ -1,0 +1,17 @@
+*{
+  border: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+div div{
+  display: grid;
+  grid-template: 'img img'
+  'img img '
+  'img img ';
+  grid-row-gap: 0ch;
+}
+
+div div img{
+  height: 20vw;
+  width: 20vw;
+}
