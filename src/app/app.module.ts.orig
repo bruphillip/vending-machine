@@ -7,15 +7,22 @@ registerLocaleData(localePt);
 
 import { AppComponent } from './app.component';
 import { VendingMachineComponent } from './vending-machine/vending-machine.component';
+<<<<<<< HEAD
+=======
 import { ItemComponent } from './vending-machine/item/item.component';
 import { CaixaComponent } from './vending-machine/caixa/caixa.component';
+>>>>>>> 1eaec5028cb986c79b877f760e7360795d749c28
 
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
+    VendingMachineComponent
+=======
     VendingMachineComponent,
     ItemComponent,
     CaixaComponent
+>>>>>>> 1eaec5028cb986c79b877f760e7360795d749c28
   ],
   imports: [
     BrowserModule

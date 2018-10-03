@@ -1,0 +1,11 @@
+<div class="caixa">
+  <div class="currency">
+    <div *ngFor="let currency of Real" (click)="currencyClick(currency)">
+        {{currency.value | currency: 'R$'}}
+    </div>
+  </div>
+  <div class="caixa-bottom">
+    <p>Saldo: {{saldoValue | currency: 'R$'}}</p>
+    <button (click)="buy()" >Comprar</button>
+  </div>
+</div>

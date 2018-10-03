@@ -1,13 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+
+@Component({
+  selector: 'vm-vending-machine',
+=======
 import { Product, Produtos } from './product.model'
 
 @Component({
   selector: 'vending-machine',
+>>>>>>> 1eaec5028cb986c79b877f760e7360795d749c28
   templateUrl: './vending-machine.component.html',
   styleUrls: ['./vending-machine.component.css']
 })
 export class VendingMachineComponent implements OnInit {
 
+<<<<<<< HEAD
+=======
   Produtos: Product[] = Produtos;
   Message: string = ''
   Troco: number = 0
@@ -15,11 +23,14 @@ export class VendingMachineComponent implements OnInit {
   CartProduct: Product[] = []
   price: number = 0.00
 
+>>>>>>> 1eaec5028cb986c79b877f760e7360795d749c28
   constructor() { }
 
   ngOnInit() {
   }
 
+<<<<<<< HEAD
+=======
   addToCart(produto: Product){
     this.price += produto.valor;
     this.CartProduct.push(produto);
@@ -36,4 +47,5 @@ export class VendingMachineComponent implements OnInit {
       this.Message = '';
     }
   }
+>>>>>>> 1eaec5028cb986c79b877f760e7360795d749c28
 }
