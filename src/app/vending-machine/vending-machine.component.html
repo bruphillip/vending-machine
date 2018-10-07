@@ -1,23 +1,18 @@
 <div class="content">
   <div class="product">
     <div *ngFor="let product of Produtos">
-        <vm-item (Produto)="addToCart($event)" [product]="product"></vm-item>
+      <vm-item (Produto)="addToCart($event); cart.produtos = CartProduct" [product]="product"></vm-item>
     </div>
-    
+
   </div>
   <div>
-    <vm-caixa (buyIt)="calculateBuy($event)"></vm-caixa>
+    <vm-caixa class="caixa" (buyIt)="calculateBuy($event)"></vm-caixa>
     <div class="cart-item">
       Custo: {{price | currency: 'R$'}}
     </div>
-    <div *ngIf="Message == ''"class="troco">
-        Número de itens: {{CartProduct.length}}
-        Seu troco é: {{Troco | currency: 'R$'}}
-    </div>
-    <div *ngIf="Message != ''"class="troco">
-        {{Message}}
-    </div>
+    <vm-cart-item #cart></vm-cart-item>
+
   </div>
-  
-  
+
+
 </div>

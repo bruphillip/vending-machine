@@ -1,39 +1,104 @@
-import { Component, OnInit } from '@angular/core';
-import { Product, Produtos } from './product.model'
+import { Real, Currency } from "./current.model";
+import { coinChange } from "./coin-change.func";
+import { MatSnackBar } from "@angular/material";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Product, Produtos } from "./product.model";
+import { CaixaComponent } from "./caixa/caixa.component";
+import { CartItemComponent } from "./cart-item/cart-item.component";
+import { ItemComponent } from "./item/item.component";
 
 @Component({
-  selector: 'vending-machine',
-  templateUrl: './vending-machine.component.html',
-  styleUrls: ['./vending-machine.component.css']
+  selector: "vending-machine",
+  templateUrl: "./vending-machine.component.html",
+  styleUrls: ["./vending-machine.component.css"]
 })
 export class VendingMachineComponent implements OnInit {
+  @ViewChild(CaixaComponent)
+  caixaComp: CaixaComponent;
+
+  @ViewChild(CartItemComponent)
+  lista: CartItemComponent;
+
+  @ViewChild(ItemComponent)
+  item: ItemComponent;
 
   Produtos: Product[] = Produtos;
-  Message: string = ''
-  Troco: number = 0
+  Message: string = "";
+  Troco: number[] = [];
+  caixa: Currency[] = Real;
 
-  CartProduct: Product[] = []
-  price: number = 0.00
+  CartProduct: Product[] = [];
+  price: number = 0.0; //Variavel custo exibida na tela
 
-  constructor() { }
+  constructor(private snack: MatSnackBar) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  addToCart(produto: Product){
+  addToCart(produto: Product) {
+    // Adicionar ao carrinho do cliente
     this.price += produto.valor;
-    this.CartProduct.push(produto);
+    const index = this.CartProduct.findIndex(
+      product => product.id === produto.id
+    );
+    if (index !== -1) {
+      return this.CartProduct[index].quantity++;
+    }
+    this.CartProduct.push({ ...produto, quantity: 1 });
   }
 
-  calculateBuy(price: number){
-    
-    if(price == 0){ return null;}
-    
-    if(price < this.price){
-      this.Message = 'Saldo Insuficiente'
-    }else{
-      this.Troco = price - this.price 
-      this.Message = '';
+  calculateBuy({ price, currency }) {
+    this.Troco = [];
+    if (price == 0) {
+      return this.snack.open(
+        "Insira algum valor, antes de realizar a compra",
+        "",
+        {
+          duration: 3000
+        }
+      );
+    }
+
+    if (price < this.price) {
+      return this.snack.open("Saldo insuficiente", "", { duration: 2000 });
+    }
+
+    price -= this.price; //this.price é o valor que vem do carrinho
+    this.calculoTroco(price, currency);
+    this.snack.open(
+      `O seu troco em moedas foi de: R$: ${price.toFixed(
+        2
+      )} \n  as moedas foram ${this.Troco.map(t => {
+        return `R$: ${t.toFixed(2)}`;
+      })} `,
+      "Fechar",
+      {
+        duration: 20000
+      }
+    );
+    this.resetMachine();
+  }
+
+  resetMachine() {
+    this.caixaComp.saldoValue = 0;
+    this.price = 0;
+    this.CartProduct = [];
+    this.lista.produtos = [];
+  }
+
+  calculoTroco(price, currency) {
+    this.caixa.map((e, index) => {
+      try {
+        if (e.value == currency[index].value)
+          return (e.quantity += currency[index].quantity);
+      } catch (err) {}
+    });
+
+    try {
+      this.Troco = coinChange(price, this.caixa);
+    } catch (err) {
+      this.snack.open(`O seu troco em moedas foi de: 0`, "Fechar", {
+        duration: 20000
+      });
     }
   }
 }

@@ -1,27 +1,28 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../product.model';
+import { MatSnackBar } from "@angular/material";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Product } from "../product.model";
 
 @Component({
-  selector: 'vm-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  selector: "vm-item",
+  templateUrl: "./item.component.html",
+  styleUrls: ["./item.component.css"]
 })
 export class ItemComponent implements OnInit {
-
   @Input()
-  private product: Product;
+  public product: Product;
 
   @Output()
-  Produto: EventEmitter<Product>
+  Produto: EventEmitter<Product> = new EventEmitter();
 
-  constructor() {
-    this.Produto = new EventEmitter();
-   }
+  constructor(private snack: MatSnackBar) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  productClick(){
-    this.Produto.emit(this.product)
+  productClick() {
+    if (this.product.quantity == 0) {
+      return this.snack.open("Item fora do estoque", "", { duration: 1500 });
+    }
+    this.product.quantity--;
+    this.Produto.emit(this.product);
   }
 }
