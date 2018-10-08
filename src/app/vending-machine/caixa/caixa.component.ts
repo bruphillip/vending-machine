@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { Currency, clientCoin } from "./../current.model";
+import { Currency, clientCoin } from "../currency.model";
 
 @Component({
   selector: "vm-caixa",

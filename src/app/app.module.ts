@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, LOCALE_ID } from "@angular/core";
 import localePt from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
-import { MatSnackBarModule } from "@angular/material";
+import { MatSnackBarModule, MatDialogModule } from "@angular/material";
 import { MatTableModule } from "@angular/material/table";
 registerLocaleData(localePt);
 
@@ -12,6 +12,7 @@ import { VendingMachineComponent } from "./vending-machine/vending-machine.compo
 import { ItemComponent } from "./vending-machine/item/item.component";
 import { CaixaComponent } from "./vending-machine/caixa/caixa.component";
 import { CartItemComponent } from "./vending-machine/cart-item/cart-item.component";
+import { CoinView } from "./vending-machine/coin-view";
 
 @NgModule({
   declarations: [
@@ -19,15 +20,18 @@ import { CartItemComponent } from "./vending-machine/cart-item/cart-item.compone
     VendingMachineComponent,
     ItemComponent,
     CaixaComponent,
-    CartItemComponent
+    CartItemComponent,
+    CoinView
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pt" }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CoinView]
 })
 export class AppModule {}

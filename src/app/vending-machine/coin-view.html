@@ -1,0 +1,33 @@
+<div style="width: 300px; height: 250px;">
+  <table>
+    <tr style="width: 250px;">
+      <th style="color: black">Nota/Moeda</th>
+      <th style="color: black">Quantidade</th>
+    </tr>
+    <tr *ngFor="let coin of data">
+      <td style="color: black">{{coin.value}}</td>
+      <td style="color: black">{{coin.quantity}}</td>
+    </tr>
+  </table>
+</div>
+
+
+
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>

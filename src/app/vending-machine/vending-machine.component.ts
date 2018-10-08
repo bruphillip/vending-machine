@@ -1,6 +1,7 @@
-import { Real, Currency } from "./current.model";
+import { CoinView } from "./coin-view";
+import { Real, Currency } from "./currency.model";
 import { coinChange } from "./coin-change.func";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatDialog } from "@angular/material";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Product, Produtos } from "./product.model";
 import { CaixaComponent } from "./caixa/caixa.component";
@@ -28,9 +29,9 @@ export class VendingMachineComponent implements OnInit {
   caixa: Currency[] = Real;
 
   CartProduct: Product[] = [];
-  price: number = 0.0; //Variavel custo exibida na tela
+  price: number = 0.0;
 
-  constructor(private snack: MatSnackBar) {}
+  constructor(private snack: MatSnackBar, private dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -64,6 +65,7 @@ export class VendingMachineComponent implements OnInit {
 
     price -= this.price; //this.price é o valor que vem do carrinho
     this.calculoTroco(price, currency);
+
     this.snack.open(
       `O seu troco em moedas foi de: R$: ${price.toFixed(
         2
@@ -100,5 +102,11 @@ export class VendingMachineComponent implements OnInit {
         duration: 20000
       });
     }
+  }
+
+  openCoinList() {
+    this.dialog.open(CoinView, {
+      data: this.caixa
+    });
   }
 }

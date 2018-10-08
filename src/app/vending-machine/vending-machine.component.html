@@ -1,4 +1,5 @@
 <div class="content">
+  <p (click)="openCoinList()" class="coin-list">Caixa de Moedas</p>
   <div class="product">
     <div *ngFor="let product of Produtos">
       <vm-item (Produto)="addToCart($event); cart.produtos = CartProduct" [product]="product"></vm-item>

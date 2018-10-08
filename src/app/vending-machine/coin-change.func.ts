@@ -1,4 +1,4 @@
-import { Currency } from "./current.model";
+import { Currency } from "./currency.model";
 
 export const coinChange = (
   price: number, // Preço de custo

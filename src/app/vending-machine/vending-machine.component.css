@@ -3,3 +3,17 @@
   display: flex;
   justify-content: center;
 }
+
+.coin-list {
+  background-color: #9c59b679;
+  height: 60px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coin-list:hover {
+  background-color: #9c59b6;
+}
