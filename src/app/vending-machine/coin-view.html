@@ -5,7 +5,7 @@
       <th style="color: black">Quantidade</th>
     </tr>
     <tr *ngFor="let coin of data">
-      <td style="color: black">{{coin.value}}</td>
+      <td style="color: black">{{coin.value | currency: 'BRL'}}</td>
       <td style="color: black">{{coin.quantity}}</td>
     </tr>
   </table>

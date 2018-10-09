@@ -1,5 +1,5 @@
 import { CoinView } from "./coin-view";
-import { Real, Currency } from "./currency.model";
+import { Real, Currency, clientCoin } from "./currency.model";
 import { coinChange } from "./coin-change.func";
 import { MatSnackBar, MatDialog } from "@angular/material";
 import { Component, OnInit, ViewChild } from "@angular/core";
@@ -85,6 +85,10 @@ export class VendingMachineComponent implements OnInit {
     this.price = 0;
     this.CartProduct = [];
     this.lista.produtos = [];
+    this.caixaComp.Real = clientCoin.map(i => {
+      i.quantity = 0;
+      return i;
+    });
   }
 
   calculoTroco(price, currency) {
